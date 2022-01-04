@@ -4,17 +4,16 @@ class Account
   attr_reader :transactions
 
   def initialize
-    @transactions = {}
+    @transactions = []
   end
 
   def deposit(credit, date)
-    @transactions['credit'] = credit
-      @transactions['date'] = date
+    @transactions << [credit, date]
   end
 
   def withdrawal(debit, date)
-    @transactions['debit'] = debit
-    @transactions['date'] = date
+    @transactions << [-debit, date]
+
   end
 
 end
