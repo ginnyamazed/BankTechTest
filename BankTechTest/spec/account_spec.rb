@@ -28,7 +28,7 @@ describe 'account' do
     end
   end
 
-  describe 'account statement' do
+  describe 'account statement integration/feature test' do
     it 'prints out a list of transactions and balance after each transaction' do
       transactions
       expect { puts(account.account_statement) }.to output.to_stdout

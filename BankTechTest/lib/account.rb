@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-require 'bigdecimal'
-
 class Account
   attr_reader :transactions, :balance
 
   def initialize
     @transactions = []
-    @balance = 0
   end
 
   def deposit(credit, date)
@@ -19,7 +16,7 @@ class Account
   end
 
   def statement_header
-    puts "\n""   date    ||  credit ||  debit  ||  balance"
+    puts "\n   date    ||  credit ||  debit  ||  balance"
   end
 
   def account_statement
@@ -37,17 +34,11 @@ class Account
     balance = 0
     balance_array = []
     by_date_newest_first = @transactions.reverse { |x, y| x["date"] <=> y["date"] }
-    by_date_oldest_first = by_date_newest_first.reverse { |x, y| x["date"] <=> y["date"] }
+    by_date_oldest_first = by_date_newest_first.reverse { |x, y| x["date"] <=> y["date"] } # this gets multidimensional
+    # array sorted by date
 
     by_date_oldest_first.map { |amount, date| balance_array << (sprintf "%.2f", (balance += amount.to_i)) }
     transactions_with_balance = by_date_oldest_first.zip(balance_array).map(&:flatten)
-    transactions_by_date_with_balance = transactions_with_balance.reverse { |x, y| x["date"] <=> y["date"] }
-    transactions_by_date_with_balance
+    transactions_with_balance.reverse { |x, y| x["date"] <=> y["date"] }
   end
-
-  account = Account.new
-  account.deposit(1000, '10-01-2023')
-  account.deposit(2000, '13-01-2023')
-  account.withdrawal(500, '14-01-2023')
-  puts account.account_statement
 end
