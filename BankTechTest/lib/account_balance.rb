@@ -1,5 +1,5 @@
-# # frozen_string_literal: true
-#
+# frozen_string_literal: true
+
 # require_relative 'account'
 #
 # class AccountBalance
@@ -17,8 +17,8 @@
 #     balance = 0
 #     balance_array = []
 #     arrange_by_date.map { |amount, date| balance_array << (sprintf "%.2f", (balance += amount.to_i)) }
-#     # although date element not used, if it is removed, I am unable to iterate through array and get balance. Please leave in code.
-#     transactions_with_balance = arrange_by_date.zip(balance_array).map(&:flatten).reverse { |x, y| x["date"] <=> y["date"] }
-#     p transactions_with_balance
+#     # although date element not used, if it is removed, I am unable to iterate through array and get balance.
+# Please leave in code.
+#     arrange_by_date.zip(balance_array).map(&:flatten).reverse { |x, y| x["date"] <=> y["date"] }
 #   end
 # end
