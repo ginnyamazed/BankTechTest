@@ -1,29 +1,40 @@
 # frozen_string_literal: true
 
 require_relative 'account'
-
-# pulls in record of transactions and formats
+# formats record of transactions
 class Statement
 
-
-  def statement_header
-    puts "\n   date    ||  credit ||  debit  ||  balance"
+  def build_statement(transactions)
+    printed_statement = ''
+    add_balance_of_transactions(transactions)
+    printed_statement += statement_header
+    transactions.sort! { |x, y| y.getDate <=> x.getDate }
+    transactions.map do |transaction|
+      printed_statement += transaction.getAmount.positive? ? deposit_format(transaction) : withdrawal_format(transaction)
+    end
+    printed_statement
   end
 
-  def build_statement(transactions)
+  private
+
+  # please do not change formatting.  Although columns are not aligned it matches the acceptance criteria
+  def deposit_format(transaction)
+    "#{transaction.getDate} || #{format '%.2f',
+                                        transaction.getAmount} || || #{format '%.2f', transaction.getCurrentBalance}\n"
+  end
+
+  def withdrawal_format(transaction)
+    "#{transaction.getDate} || || #{format '%.2f',
+                                           -transaction.getAmount} || #{format '%.2f', transaction.getCurrentBalance}\n"
+  end
+
+  def statement_header
+    "date || credit || debit || balance \n"
+  end
+
+  def add_balance_of_transactions(transactions)
     current_balance = 0
-    statement_header
-    #first sort the array in date asc
     transactions.sort! { |x, y| x.getDate <=> y.getDate }
-    #then calculate the transaction balance and set on each transaction in the right order
-    transactions.map do |transaction|
-      current_balance += transaction.getAmount
-      transaction.setCurrentBalance(current_balance)
-    end
-    # reverse the order and print
-    transactions.sort! { |x, y| y.getDate <=> x.getDate }
-    transactions.map  do |transaction|
-      puts "#{transaction.getDate} || #{transaction.getAmount} ||         ||  #{transaction.getCurrentBalance}"
-    end
+    transactions.map { |transaction| transaction.setCurrentBalance(current_balance += transaction.getAmount) }
   end
 end

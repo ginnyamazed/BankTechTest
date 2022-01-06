@@ -3,27 +3,25 @@
 require_relative 'transaction'
 require_relative 'statement'
 
-
-
 # enables transactions to be entered and account_statement to be returned
 class Account
-  attr_reader :transactions
+  attr_reader :all_transactions
 
   def initialize
-    @transactions = []
+    @all_transactions = []
   end
 
   def deposit(amount, date)
-    @transactions << Transaction.new(amount, date)
+    @all_transactions << Transaction.new(amount, date)
   end
 
   def withdrawal(amount, date)
-    @transactions << Transaction.new(-amount, date)
+    @all_transactions << Transaction.new(-amount, date)
   end
 
   def print_statement
     statement = Statement.new
-    statement.build_statement(@transactions)
+    puts statement.build_statement(@all_transactions)
   end
 
 end
