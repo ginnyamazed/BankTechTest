@@ -45,6 +45,8 @@ puts account.account_statement
 ```
 ![](Desktop/Screenshot 2022-01-05 at 17.53.44.png)
 
+![](../../../../../Desktop/Screenshot 2022-01-05 at 17.53.44.png)
+
 ## Design/Architecture
 
 This project was an opportunity to work in a solo environment while practicing OO design and TDD skills. I used Ruby as
