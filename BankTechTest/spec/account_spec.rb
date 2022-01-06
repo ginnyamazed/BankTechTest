@@ -7,18 +7,22 @@ describe 'account' do # 'keeps track of account transactions'
   let(:account) { Account.new }
   let(:deposit_amount) { 1000 }
   let(:deposit_date) { '10-01-2023' }
-  # let(:withdrawal) { Transaction.new(500, '14-01-2023') }
+  let(:withdrawal_amount) { 500 }
+  let(:withdrawal_date) { '14-01-2023' }
 
   it 'accepts a credit transaction' do
     account.deposit(deposit_amount, deposit_date)
     t = account.transactions[0]
-    expect(t.getAmount).to eq(1000)
+    expect(t.getAmount).to eq(deposit_amount)
+    expect(t.getDate).to eq(deposit_date)
   end
 
-  # it 'accepts a debit transaction' do
-  #   account.withdrawal(500, '14-01-2023')
-  #   expect(account.transactions).to include(%w[-500.00 14-01-2023])
-  # end
+  it 'accepts a debit transaction' do
+    account.withdrawal(withdrawal_amount, withdrawal_date)
+    t = account.transactions[0]
+    expect(t.getAmount).to eq(-withdrawal_amount)
+    expect(t.getDate).to eq(withdrawal_date)
+  end
   #
   # it 'adds a balance element the transaction array and organizes it by date order' do
   #   enter_transactions
