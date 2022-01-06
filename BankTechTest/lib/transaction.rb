@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-# require_relative 'deposit'
-# require_relative 'withdrawal'
-#
-# class Transaction
-#
-#   attr_reader :transactions_record
-#   @transactions_record = []
-#
-#   def initialize
-#     current_transaction = []
-#   end
-#
-#   def record
-#     @transactions_record
-#   end
-# end
+# class to create a new transaction to go to account instance
+class Transaction
+
+  def initialize(amount, date)
+    @amount = amount
+    @date = date
+  end
+
+  def getAmount
+    @amount
+  end
+
+  def getDate
+    @date
+  end
+end

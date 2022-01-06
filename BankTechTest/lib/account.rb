@@ -10,12 +10,12 @@ class Account
     @transactions = []
   end
 
-  def deposit(credit, date)
-    @transactions << [(format '%.2f', credit), date]
+  def deposit(amount, date)
+    @transactions << Transaction.new(amount, date)
   end
 
-  def withdrawal(debit, date)
-    @transactions << [(format '%.2f', -debit), date]
+  def withdrawal(amount, date)
+    @transactions << Transaction.new(-amount, date)
   end
 
   def statement_header
@@ -47,4 +47,5 @@ class Account
     # leave in code.
     arrange_array_by_date.zip(balance_array).map(&:flatten).reverse { |x, y| x['date'] <=> y['date'] }
   end
+
 end
