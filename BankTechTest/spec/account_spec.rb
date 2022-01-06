@@ -2,6 +2,7 @@
 
 require_relative '../lib/account'
 require_relative '../lib/transaction'
+require_relative 'account_transactions_spec_helper'
 
 describe 'account' do # 'keeps track of account transactions'
   let(:account) { Account.new }
@@ -24,10 +25,8 @@ describe 'account' do # 'keeps track of account transactions'
     expect(t.getDate).to eq(withdrawal_date)
   end
 
-  # describe 'account statement integration/feature test' do
-  #   it 'prints out a list of transactions and balance after each transaction' do
-  #     enter_transactions
-  #     expect { puts(account.account_statement) }.to output.to_stdout
-  #   end
-  # end
+  it 'prints out a statement' do
+    enter_transactions
+    expect { account.print_statement }.to output.to_stdout
+  end
 end
