@@ -14,15 +14,15 @@ describe 'account' do # 'keeps track of account transactions'
   it 'accepts a credit transaction' do
     account.deposit(deposit_amount, deposit_date)
     t = account.all_transactions[0]
-    expect(t.getAmount).to eq(deposit_amount)
-    expect(t.getDate).to eq(deposit_date)
+    expect(t.amount).to eq(deposit_amount)
+    expect(t.date).to eq(deposit_date)
   end
 
   it 'accepts a debit transaction' do
     account.withdrawal(withdrawal_amount, withdrawal_date)
     t = account.all_transactions[0]
-    expect(t.getAmount).to eq(-withdrawal_amount)
-    expect(t.getDate).to eq(withdrawal_date)
+    expect(t.amount).to eq(-withdrawal_amount)
+    expect(t.date).to eq(withdrawal_date)
   end
 
   it 'prints out a statement' do

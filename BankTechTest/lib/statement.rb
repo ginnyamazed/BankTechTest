@@ -8,9 +8,9 @@ class Statement
     printed_statement = ''
     add_balance_of_transactions(transactions)
     printed_statement += statement_header
-    transactions.sort! { |x, y| y.getDate <=> x.getDate }
+    transactions.sort! { |x, y| y.date <=> x.date }
     transactions.map do |transaction|
-      printed_statement += transaction.getAmount.positive? ? deposit_format(transaction) : withdrawal_format(transaction)
+      printed_statement += transaction.amount.positive? ? deposit_format(transaction) : withdrawal_format(transaction)
     end
     printed_statement
   end
@@ -19,13 +19,13 @@ class Statement
 
   # please do not change formatting.  Although columns are not aligned it matches the acceptance criteria
   def deposit_format(transaction)
-    "#{transaction.getDate} || #{format '%.2f',
-                                        transaction.getAmount} || || #{format '%.2f', transaction.getCurrentBalance}\n"
+    "#{transaction.date} || #{format '%.2f',
+                                     transaction.amount} || || #{format '%.2f', transaction.current_balance}\n"
   end
 
   def withdrawal_format(transaction)
-    "#{transaction.getDate} || || #{format '%.2f',
-                                           -transaction.getAmount} || #{format '%.2f', transaction.getCurrentBalance}\n"
+    "#{transaction.date} || || #{format '%.2f',
+                                        -transaction.amount} || #{format '%.2f', transaction.current_balance}\n"
   end
 
   def statement_header
@@ -33,8 +33,8 @@ class Statement
   end
 
   def add_balance_of_transactions(transactions)
-    current_balance = 0
-    transactions.sort! { |x, y| x.getDate <=> y.getDate }
-    transactions.map { |transaction| transaction.setCurrentBalance(current_balance += transaction.getAmount) }
+    running_balance = 0
+    transactions.sort! { |x, y| x.date <=> y.date }
+    transactions.map { |transaction| transaction.update_current_balance(running_balance += transaction.amount) }
   end
 end
