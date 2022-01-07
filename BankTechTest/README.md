@@ -44,6 +44,8 @@ puts account.account_statement
 
 ```
 ![](Desktop/Screenshot 2022-01-05 at 17.53.44.png)
+screenshot of code in process:
+![](../../../../../Desktop/Screenshot 2022-01-05 at 17.53.44.png)
 
 ## Design/Architecture
 
