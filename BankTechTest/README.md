@@ -43,7 +43,8 @@ account.withdrawal(500, '14-01-2023')
 account.print_statement
 
 ```
-![](../../../../Desktop/Screenshot 2022-01-07 at 00.29.42.png)
+
+![](/Users/ginnythomas/Documents/Projects/Makers-Bootcamp/Week10/BankTechTest/Screenshot 2022-01-07 at 00.29.42.png)
 
 ## Design/Architecture
 
