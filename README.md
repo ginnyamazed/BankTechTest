@@ -18,10 +18,10 @@ Given a client
 - When she prints her bank statement she would see:
 
 <pre>
-  date     || credit  ||  debit  || balance
-14/01/2023 ||         ||  500.00 || 2500.00
-13/01/2023 || 2000.00 ||         || 3000.00
-10/01/2023 || 1000.00 ||         || 1000.00
+date || credit || debit || balance
+14/01/2023 || || 500.00 || 2500.00
+13/01/2023 || 2000.00 || || 3000.00
+10/01/2023 || 1000.00 || || 1000.00
 </pre>
 
 ### Installation
@@ -40,10 +40,10 @@ account = Account.new
 account.deposit(1000, '10-01-2023')
 account.deposit(2000, '13-01-2023')
 account.withdrawal(500, '14-01-2023')
-puts account.account_statement
+account.print_statement
 
 ```
-![](Desktop/Screenshot 2022-01-05 at 17.53.44.png)
+![](../../../../Desktop/Screenshot 2022-01-07 at 00.29.42.png)
 
 ## Design/Architecture
 
@@ -55,8 +55,10 @@ simple and readable.  The object includes a transactions array.  The functions o
 class is to add deposits, make withdrawals, and obtain a statement. 
 
 During the coding I faced delays due to attempting to use an incorrect RSpec matcher for the type of object I was 
-working with.  Further work would seek to implement additional edge case testing and data entry checks. It would also 
-attempt to separate the app into at least 1 additional class.
+working with. Some of the delays and difficulties was also due to having all functionality in a single class.  By 
+separating the transaction functionality into it's own class, the transactions array became easier to work with and 
+manipulate. Further work would seek to implement additional edge case testing and data entry checks, specifically a date
+object so that input is no longer a string and is only accepted if the input format is correct. 
 
 ### Tests
 RSpec is being used for testing. To run the tests
