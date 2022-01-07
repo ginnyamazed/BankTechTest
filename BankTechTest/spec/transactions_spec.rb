@@ -9,5 +9,3 @@ describe 'transactions' do
     expect(transaction.date).to eq('10-01-2023')
   end
 end
-
-

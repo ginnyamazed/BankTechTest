@@ -23,5 +23,4 @@ class Account
     statement = Statement.new
     puts statement.build_statement(@all_transactions)
   end
-
 end

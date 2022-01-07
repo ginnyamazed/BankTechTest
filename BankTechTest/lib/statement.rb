@@ -3,7 +3,6 @@
 require_relative 'account'
 # formats record of transactions
 class Statement
-
   def build_statement(transactions)
     printed_statement = ''
     add_balance_of_transactions(transactions)

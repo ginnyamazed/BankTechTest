@@ -13,7 +13,5 @@ describe 'statement' do
   let(:transaction_array) { [t1, t2, t3] }
   it 'formats a statement header' do
     expect(statement.build_statement(transaction_array)).to eq(output_string)
-
   end
 end
-
